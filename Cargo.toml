@@ -13,33 +13,8 @@ version = "0.1.0"
 # test = false
 
 [[bin]]
-name = "bitfield"
-path = "src/bin/bitfield.rs"
-test = false
-
-[[bin]]
-name = "format"
-path = "src/bin/format.rs"
-test = false
-
-[[bin]]
-name = "hello"
-path = "src/bin/hello.rs"
-test = false
-
-[[bin]]
-name = "levels"
-path = "src/bin/levels.rs"
-test = false
-
-[[bin]]
-name = "overflow"
-path = "src/bin/overflow.rs"
-test = false
-
-[[bin]]
-name = "panic"
-path = "src/bin/panic.rs"
+name = "dht11_test_stm32f407"
+path = "src/bin/dht11_test_stm32f407.rs"
 test = false
 
 [lib]
@@ -58,11 +33,13 @@ defmt-rtt = "1.0"
 embedded-hal = "1.0.0"
 panic-probe = { version = "1.0", features = ["print-defmt"] }
 semihosting = "0.1.20"
-# TODO(4) enter your HAL here
-# some-hal = "1.2.3"
 
 [dev-dependencies]
 defmt-test = "0.3"
+
+[dependencies.stm32f4xx-hal]
+version = "0.23.0"
+features = ["stm32f407"]
 
 # cargo build/run
 [profile.dev]
