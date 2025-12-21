@@ -113,8 +113,11 @@ where PIN: InputPin<Error = E> + OutputPin<Error = E>
     /// ⚠️ WARNING: This is a blocking call that takes ~3 seconds to complete.
     pub fn new_and_initialized(pin: PIN, delay: &mut impl DelayNs) -> error::Result<DHT11<PIN, Initialized>, E> {
         let uninit = Self::new(pin);
+        let init = uninit.initialize(delay)?;
 
-        uninit.initialize(delay)
+        delay.delay_ms(2_000);
+
+        Ok(init)
     }
 }
 
@@ -122,16 +125,10 @@ impl<PIN, E> DHT11<PIN, Uninitialized>
 where PIN: InputPin<Error = E> + OutputPin<Error = E>
 {
     /// 🛠️ Initializes the sensor with required power-on delays
-    /// ⚠️ WARNING: This is a blocking call that takes ~3 seconds to complete.
+    /// ⚠️ WARNING: Wait at least 2 seconds after initialization before reading the sensor
     pub fn initialize(mut self, delay: &mut impl DelayNs) -> error::Result<DHT11<PIN, Initialized>, E> {
-        // Wait 1s for the sensor to stabilize after power-up ⚡
-        delay.delay_ms(1000);
-
         // Perform a test handshake to ensure the sensor is present 🤝
         self.send_start_signal(delay)?;
-
-        // Wait another 2s to respect the sensor's internal sampling rate 🐌
-        delay.delay_ms(2000);
 
         Ok(DHT11 {
             pin: self.pin,
