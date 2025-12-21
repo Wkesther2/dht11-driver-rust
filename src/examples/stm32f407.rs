@@ -39,8 +39,11 @@ fn main() -> ! {
     
     // 🌡️ Create and initialize the DHT11 driver
     // The Typestate pattern ensures we can't read before initialization! 🛡️
-    let dht11 = DHT11::new(dht11_pin);
-    let mut dht11 = dht11.initialize(&mut delay).unwrap();
+    // let dht11 = DHT11::new(dht11_pin);
+    // let mut dht11 = dht11.initialize(&mut delay).unwrap();
+
+    // Alternatively we can use the new_and_init method to create and initialize the Sensor in one Step
+    let mut dht11 = DHT11::new_and_initialized(dht11_pin, &mut delay).unwrap();
 
     loop {
         // Request new data from the sensor

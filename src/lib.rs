@@ -108,12 +108,21 @@ where PIN: InputPin<Error = E> + OutputPin<Error = E>
             _state: PhantomData,
         }
     }
+
+    /// Creates and initializes the sensor in one go.
+    /// ⚠️ WARNING: This is a blocking call that takes ~3 seconds to complete.
+    pub fn new_and_initialized(pin: PIN, delay: &mut impl DelayNs) -> error::Result<DHT11<PIN, Initialized>, E> {
+        let uninit = Self::new(pin);
+
+        uninit.initialize(delay)
+    }
 }
 
 impl<PIN, E> DHT11<PIN, Uninitialized>
 where PIN: InputPin<Error = E> + OutputPin<Error = E>
 {
     /// 🛠️ Initializes the sensor with required power-on delays
+    /// ⚠️ WARNING: This is a blocking call that takes ~3 seconds to complete.
     pub fn initialize(mut self, delay: &mut impl DelayNs) -> error::Result<DHT11<PIN, Initialized>, E> {
         // Wait 1s for the sensor to stabilize after power-up ⚡
         delay.delay_ms(1000);
