@@ -1,57 +1,62 @@
 [package]
-authors = ["Gabriel Zuser <zusergabriel@gmail.com>"]
 name = "dht11-driver-rust"
-edition = "2024"
 version = "0.1.0"
+authors = ["Gabriel Zuser <zusergabriel@gmail.com>"]
+edition = "2021"
+description = "A platform-agnostic no-std driver for the DHT11 sensor using typestates for safety."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Wkesther2/dht11-driver-rust.git"
+readme = "README.md"
+keywords = ["dht11", "sensor", "embedded-hal", "stm32", "no-std"]
+categories = ["embedded", "hardware-support"]
 
 [lib]
 harness = false
 
 [[example]]
-name = "stm32f407"
-path = "src/examples/stm32f407.rs"
+name = "stm32f407_dwt"
+path = "examples/stm32f407_dwt.rs"
+required-features = ["use-dwt"] 
 
-# --- 📦 Dependencies ---
+[[example]]
+name = "stm32f407_no_dwt"
+path = "examples/stm32f407_no_dwt.rs"
+
+# --- Dependencies ---
 
 [dependencies]
-# Basic HAL and defmt 🦀
-defmt = "0.3"
+defmt = { version = "0.3", optional = true }
 embedded-hal = "1.0.0"
+fugit = "0.3.9"
 
-# Optional Cortex-M support for DWT 🏎️
+# Optional Cortex-M support for DWT
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"], optional = true }
 
 [dev-dependencies]
-# We only use the mcu-feature here. 
-# The runtime support is handled by the separate cortex-m-rt dependency below.
 stm32f4xx-hal = { version = "0.23.0", features = ["stm32f407"] } 
 cortex-m-rt = "0.7"
-defmt-rtt = "1.1.0"
-panic-probe = { version = "1.0.0", features = ["print-defmt"] }
-defmt-test = "0.4.0"
+defmt-rtt = "0.4"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+panic-halt = "1.0.0"
 
-# --- 🛠️ Features ---
+# --- Features ---
 
 [features]
-default = ["dwt"]
-# The "dwt" feature enables the cortex-m dependency ⚡
-dwt = ["dep:cortex-m"]
+default = ["use-defmt"]
+use-dwt = ["dep:cortex-m"]
+use-defmt = ["dep:defmt"]
 
-# --- ⚙️ Profiles ---
+# --- Profiles ---
 
-# cargo build/run (Debug)
 [profile.dev]
-opt-level = 0
-codegen-units = 1
+opt-level = "s"
 debug = true
 
-# Optimize dependencies even in debug mode to keep timing stable 🏎️
 [profile.dev.package."*"]
 opt-level = 3
 
-# cargo build/run --release
 [profile.release]
 opt-level = 3
-codegen-units = 1
 lto = 'fat'
-debug = 2 # Keep debug symbols for defmt
+codegen-units = 1
+debug = 2
