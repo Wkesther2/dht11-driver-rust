@@ -1,5 +1,5 @@
 [package]
-name = "dht11-driver-rust"
+name = "dht11-driver"
 version = "0.1.0"
 authors = ["Gabriel Zuser <zusergabriel@gmail.com>"]
 edition = "2021"
