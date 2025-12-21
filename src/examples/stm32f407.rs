@@ -52,15 +52,34 @@ fn main() -> ! {
         // Request new data from the sensor
         match dht11.read_temp_and_hum(&mut delay) {
             Ok(measurement) => {
-                // 📊 Print the results to the console via RTT
-                defmt::println!("Humidity: {}.{} % 💧",
+                // --- OPTION 1: Floating Point (f32) ---
+                // Best for: Human-readable logs and MCUs with an FPU (like STM32F4).
+                // ⚠️ Requires software emulation on MCUs without FPU (increases binary size).
+                defmt::println!("Temp: {} °C, Hum: {} % (f32)", 
+                    measurement.temp_as_f32(), 
+                    measurement.hum_as_f32()
+                );
+
+                /* // --- OPTION 2: Raw Integral/Decimal ---
+                // Best for: Exact bit-representation and debugging the sensor handshake.
+                // Fast and 0% overhead.
+                defmt::println!("Temperature: {}.{} °C, Humidity: {}.{} % (Raw)",
+                    measurement.temperature.integral, 
+                    measurement.temperature.decimal,
                     measurement.humidity.integral, 
                     measurement.humidity.decimal
                 );
-                defmt::println!("Temperature: {}.{} °C 🌡️",
-                    measurement.temperature.integral, 
-                    measurement.temperature.decimal
+                */
+
+                /*
+                // --- OPTION 3: Fixed Point (i16) ---
+                // Best for: Control loops and MCUs without FPU. 
+                // 255 means 25.5°C. Very fast and memory efficient.
+                defmt::println!("Temp (fixed): {}, Hum (fixed): {} (1/10th units)", 
+                    measurement.temp_as_fixed(), 
+                    measurement.hum_as_fixed()
                 );
+                */
             },
             Err(e) => {
                 // ⚠️ Handle errors (like ChecksumMismatch or Timeout)

@@ -46,6 +46,24 @@ pub struct Measurement {
     pub checksum: u8,
 }
 
+impl Measurement {
+    pub fn temp_as_f32(&self) -> f32 {
+        self.temperature.integral as f32 + (self.temperature.decimal as f32 / 10.0)
+    }
+
+    pub fn temp_as_fixed(&self) -> i16 {
+        (self.temperature.integral as i16 * 10) + (self.temperature.decimal as i16)
+    }
+
+    pub fn hum_as_f32(&self) -> f32 {
+        self.humidity.integral as f32 + (self.humidity.decimal as f32 / 10.0)
+    }
+
+    pub fn hum_as_fixed(&self) -> i16 {
+        (self.humidity.integral as i16 * 10) + (self.humidity.decimal as i16)
+    }
+}
+
 pub struct DHT11<PIN, STATE> {
     pin: PIN,
     _state: PhantomData<STATE>,
