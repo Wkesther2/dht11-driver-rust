@@ -1,4 +1,4 @@
-# 🌡️ dht11-driver-rust
+# 🌡️ dht11-driver
 
 <p align="center">
   <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="rust">
@@ -39,7 +39,7 @@ Designed with safety and precision in mind, it supports both hardware-accelerate
 ## 📂 Repository Structure
 
 ```sh
-└── dht11-driver-rust/
+└── dht11-driver/
     ├── src/
     │   ├── lib.rs            # Core driver and Typestate logic
     │   └── examples/         # STM32F407 reference implementations
@@ -52,7 +52,22 @@ Designed with safety and precision in mind, it supports both hardware-accelerate
 
 ## 🚀 Getting Started
 
-**Hardware Setup (STM32F407)**
+### 1. Installation
+
+Add the library to your `Cargo.toml`:
+
+```toml
+[dependencies]
+dht11-driver = "0.1.0"
+```
+
+Or use the cargo CLI:
+
+```
+cargo add dht11-driver
+```
+
+### 2. Hardware Setup (STM32F407)
 
 **1. Sensor Connection:** Connect the DHT11 DATA pin to PA0 on your STM32F407 Discovery/Black-Pill board.
 
@@ -86,4 +101,5 @@ let measurement = dht11.read_temp_and_hum(&mut delay);
 ## 📖 License
 
 Distributed under the **MIT License**. See the `LICENSE` file for more information.
+
 
