@@ -58,7 +58,7 @@ Add the library to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-dht11-driver = "0.1.0"
+dht11-driver = "0.1.2"
 ```
 
 Or use the cargo CLI:

@@ -1,6 +1,6 @@
 [package]
 name = "dht11-driver"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Gabriel Zuser <zusergabriel@gmail.com>"]
 edition = "2021"
 description = "A platform-agnostic no-std driver for the DHT11 sensor using typestates for safety."
