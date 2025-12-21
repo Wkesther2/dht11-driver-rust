@@ -4,11 +4,11 @@ version = "0.1.0"
 authors = ["Gabriel Zuser <zusergabriel@gmail.com>"]
 edition = "2021"
 description = "A platform-agnostic no-std driver for the DHT11 sensor using typestates for safety."
-license = "MIT OR Apache-2.0"
+license = "MIT"
 repository = "https://github.com/Wkesther2/dht11-driver-rust.git"
 readme = "README.md"
 keywords = ["dht11", "sensor", "embedded-hal", "stm32", "no-std"]
-categories = ["embedded", "hardware-support"]
+categories = ["embedded", "hardware-support", "no-std"]
 
 [lib]
 harness = false
