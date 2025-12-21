@@ -29,9 +29,9 @@ Designed with safety and precision in mind, it supports both hardware-accelerate
 
 | Component | Description |
 | :--- | :--- |
+| **Agnostic** | **Platform-independent** core; works on any MCU via `embedded-hal`. |
 | **Safety** | Uses **Typestates** to prevent reading from an uninitialized sensor. |
 | **Precision** | **DWT hardware support** for sub-microsecond pulse measurement. |
-| **Portability** | Fallback mode for non-ARM architectures. |
 | **Observability** | Native integration with `defmt` for zero-overhead logging. |
 
 ---
@@ -86,3 +86,4 @@ let measurement = dht11.read_temp_and_hum(&mut delay);
 ## 📖 License
 
 Distributed under the **MIT License**. See the `LICENSE` file for more information.
+
