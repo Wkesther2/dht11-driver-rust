@@ -4,6 +4,13 @@
   <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="rust">
   <img src="https://img.shields.io/badge/Embedded-HAL-223311?style=for-the-badge&logo=cpu&logoColor=white" alt="embedded">
   <img src="https://img.shields.io/badge/STM32F4-Blue-blue?style=for-the-badge" alt="stm32">
+  <br>
+  <a href="https://crates.io/crates/dht11-driver">
+    <img src="https://img.shields.io/crates/v/dht11-driver?style=flat-square" alt="Crates.io">
+  </a>
+  <a href="https://docs.rs/dht11-driver">
+    <img src="https://docs.rs/dht11-driver/badge.svg" alt="Docs.rs">
+  </a>
 </p>
 
 ---
@@ -101,5 +108,6 @@ let measurement = dht11.read_temp_and_hum(&mut delay);
 ## 📖 License
 
 Distributed under the **MIT License**. See the `LICENSE` file for more information.
+
 
 
