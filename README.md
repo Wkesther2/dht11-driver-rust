@@ -16,12 +16,12 @@
 ---
 
 ## Table of Contents
-- [Overview](#-overview)
-- [Features](#-features)
-- [Repository Structure](#-repository-structure)
-- [Getting Started](#-getting-started)
-- [Technical Details](#-technical-details)
-- [License](#-license)
+- [Overview](#overview)
+- [Features](#features)
+- [Repository Structure](#repository-structure)
+- [Getting Started](#getting-started)
+- [Technical Details](#technical-details)
+- [License](#license)
 
 ---
 
@@ -108,6 +108,7 @@ let measurement = dht11.read_temp_and_hum(&mut delay);
 ## License
 
 Distributed under the **MIT License**. See the `LICENSE` file for more information.
+
 
 
 
