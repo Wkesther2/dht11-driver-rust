@@ -1,4 +1,4 @@
-# 🌡️ dht11-driver
+# dht11-driver
 
 <p align="center">
   <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="rust">
@@ -15,24 +15,24 @@
 
 ---
 
-## 📖 Table of Contents
-- [📍 Overview](#-overview)
-- [📦 Features](#-features)
-- [📂 Repository Structure](#-repository-structure)
-- [🚀 Getting Started](#-getting-started)
-- [🛠 Technical Details](#-technical-details)
-- [📃 License](#-license)
+## Table of Contents
+- [Overview](#-overview)
+- [Features](#-features)
+- [Repository Structure](#-repository-structure)
+- [Getting Started](#-getting-started)
+- [Technical Details](#-technical-details)
+- [License](#-license)
 
 ---
 
-## 📍 Overview
+## Overview
 This project provides a highly optimized, `no_std` Rust driver for the DHT11 temperature and humidity sensor.
 
 Designed with safety and precision in mind, it supports both hardware-accelerated timing via ARM DWT and a portable software-based timing engine.
 
 ---
 
-## 📦 Features
+## Features
 
 | Component | Description |
 | :--- | :--- |
@@ -43,7 +43,7 @@ Designed with safety and precision in mind, it supports both hardware-accelerate
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```sh
 └── dht11-driver/
@@ -57,7 +57,7 @@ Designed with safety and precision in mind, it supports both hardware-accelerate
     └── Cargo.toml            # Feature gate definitions
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Installation
 
@@ -87,7 +87,7 @@ This repository includes pre-configured examples using probe-rs. Use the followi
 | High Precision | cargo run --example stm32f407f_dwt --features use-dwt | use-dwt, use-defmt |
 | Universal Timing | cargo run --example stm32407f_no_dwt | use-defmt |
 
-## 🛠 Technical Details
+## Technical Details
 
 **Typestate Safety**
 
@@ -105,9 +105,10 @@ let mut dht11 = dht11.initialize(&mut delay).expect("Initialization failed");
 let measurement = dht11.read_temp_and_hum(&mut delay);
 ```
 
-## 📖 License
+## License
 
 Distributed under the **MIT License**. See the `LICENSE` file for more information.
+
 
 
 
